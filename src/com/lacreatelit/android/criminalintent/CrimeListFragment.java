@@ -43,11 +43,6 @@ public class CrimeListFragment extends ListFragment {
 		// Getting access to the Model in MVC
 		mCrimes = CrimeLab.get(getActivity()).getCrimes();
 		
-		// create Adapter to display the data in the ArrayList
-//		ArrayAdapter<Crime> crimeArrayAdapter = 
-//				new ArrayAdapter<Crime>(getActivity(), 
-//										android.R.layout.simple_list_item_1,
-//										mCrimes);
 		
 		CrimeAdapter crimeAdapter = new CrimeAdapter(mCrimes);
 		
@@ -202,12 +197,6 @@ public class CrimeListFragment extends ListFragment {
 			
 			
 			Button btnNewCrime = (Button)view.findViewById(R.id.new_crime_btn); 
-//			btnNewCrime.setText("Add new crime");
-//			FrameLayout.LayoutParams buttonLayout = 
-//					new FrameLayout.LayoutParams( LayoutParams.FILL_PARENT,
-//							LayoutParams.WRAP_CONTENT);
-//			buttonLayout.setMargins(30, 30, 30, 0);
-//			btnNewCrime.setLayoutParams(buttonLayout);
 			btnNewCrime.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
@@ -222,9 +211,6 @@ public class CrimeListFragment extends ListFragment {
 				}
 			});
 			
-//			
-//			view.addView(btnNewCrime);
-//			
 		}
 		
 		
