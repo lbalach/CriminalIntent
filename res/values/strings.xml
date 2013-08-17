@@ -1,0 +1,21 @@
+<resources>
+
+    <string name="app_name">CriminalIntent</string>
+    <string name="title_activity_criminal">CrimeActivity</string>
+    <string name="hint_crime_title">Enter a title for the crime</string>
+    <string name="label_crime_title">Title</string>
+    <string name="label_crime_details">Details</string>
+    <string name="label_crime_solved">Solved?</string>
+    <string name="crimes_title">Set from fragment -> Activity</string>
+    <string name="date_picker_title">Select date</string>
+    <string name="time_picker_title">Set time</string>
+    <string name="btn_change_date">Change date</string>
+    <string name="btn_change_time">Change time</string>
+    <string name="new_crime">New Crime</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="subtitle">If you see something, say something</string>
+    <string name="delete_crime">Delete	</string>
+   	
+
+</resources>
