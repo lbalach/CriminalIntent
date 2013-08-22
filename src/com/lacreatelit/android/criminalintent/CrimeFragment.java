@@ -400,7 +400,7 @@ public class CrimeFragment extends Fragment {
 		
 	}
 
-	//===============Create the context menu===================================
+	//===============Create the context menu for pre honey comb devices=========
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -411,7 +411,7 @@ public class CrimeFragment extends Fragment {
 	}
 
 	
-	//=============Respond to the Context Menu selection=======================	
+	//=============Respond to the Context Menu selection for pre honey comb devices==	
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 	
