@@ -5,20 +5,48 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout 
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_crime_title"
-        style="?android:listSeparatorTextViewStyle"
-        />
-    
-    <EditText android:id="@+id/edit_crime_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:hint="@string/hint_crime_title"
-        />
+        android:layout_marginTop="16dp"
+        >
+        
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="4dp">
+           
+            <ImageButton android:id="@+id/image_button_crime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera"/>
+        </LinearLayout>
+        
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_weight="1">
+		    <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/label_crime_title"
+		        style="?android:listSeparatorTextViewStyle"
+		        />
+		    
+		    <EditText android:id="@+id/edit_crime_title"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="16dp"
+		        android:layout_marginRight="16dp"
+		        android:hint="@string/hint_crime_title"
+		        />
+	    </LinearLayout>
+	    
+    </LinearLayout>
     
     <TextView
         android:layout_width="match_parent"

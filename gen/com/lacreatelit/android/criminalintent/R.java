@@ -18,21 +18,25 @@ public final class R {
     public static final class id {
         public static final int btn_change_date=0x7f040002;
         public static final int btn_change_time=0x7f040003;
-        public static final int btn_crime_date=0x7f040008;
-        public static final int btn_crime_time=0x7f040009;
-        public static final int chk_crime_solved=0x7f04000a;
+        public static final int btn_crime_date=0x7f040009;
+        public static final int btn_crime_time=0x7f04000a;
+        public static final int btn_take_picture=0x7f04000d;
+        public static final int chk_crime_solved=0x7f04000b;
+        public static final int crime_camera_progressContainer=0x7f04000e;
         public static final int dialog_datePicker=0x7f040004;
         public static final int dialog_timePicker=0x7f040005;
-        public static final int edit_crime_title=0x7f040007;
+        public static final int edit_crime_title=0x7f040008;
         public static final int fragmentContainer=0x7f040001;
+        public static final int image_button_crime=0x7f040007;
         public static final int linearlayout_crime_detail=0x7f040006;
-        public static final int list_item_crime_dateTextView=0x7f04000e;
-        public static final int list_item_crime_solvedCheckBox=0x7f04000c;
-        public static final int list_item_crime_titleTextView=0x7f04000d;
-        public static final int menu_item_delete_crime=0x7f04000f;
-        public static final int menu_item_new_crime=0x7f040010;
-        public static final int menu_item_show_subtitle=0x7f040011;
-        public static final int new_crime_btn=0x7f04000b;
+        public static final int list_item_crime_dateTextView=0x7f040012;
+        public static final int list_item_crime_solvedCheckBox=0x7f040010;
+        public static final int list_item_crime_titleTextView=0x7f040011;
+        public static final int menu_item_delete_crime=0x7f040013;
+        public static final int menu_item_new_crime=0x7f040014;
+        public static final int menu_item_show_subtitle=0x7f040015;
+        public static final int new_crime_btn=0x7f04000f;
+        public static final int surfaceView_crime_camera=0x7f04000c;
         public static final int viewPager=0x7f040000;
     }
     public static final class layout {
@@ -41,9 +45,10 @@ public final class R {
         public static final int dialog_date=0x7f030002;
         public static final int dialog_time=0x7f030003;
         public static final int fragment_crime=0x7f030004;
-        public static final int list_crime_fragment=0x7f030005;
-        public static final int list_crime_fragment_new=0x7f030006;
-        public static final int list_item_crime=0x7f030007;
+        public static final int fragment_crime_camera=0x7f030005;
+        public static final int list_crime_fragment=0x7f030006;
+        public static final int list_crime_fragment_new=0x7f030007;
+        public static final int list_item_crime=0x7f030008;
     }
     public static final class menu {
         public static final int crime_list_item_context=0x7f070000;
@@ -64,6 +69,7 @@ public final class R {
         public static final int new_crime=0x7f05000b;
         public static final int show_subtitle=0x7f05000c;
         public static final int subtitle=0x7f05000e;
+        public static final int takePicture=0x7f050010;
         public static final int time_picker_title=0x7f050008;
         public static final int title_activity_criminal=0x7f050001;
     }
