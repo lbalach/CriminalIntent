@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearlayout_crime_detail"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -18,11 +19,19 @@
             android:orientation="vertical"
             android:layout_marginRight="4dp">
             
+            <ImageView android:id="@+id/imageView_crime"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerInside"
+                android:background="@android:color/darker_gray"
+                android:cropToPadding="true"/>
+            
             <ImageButton
                 android:id="@+id/image_button_crime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_camera"/>            
+                android:src="@android:drawable/ic_menu_camera"/>
+                        
         </LinearLayout>
         
 	    <LinearLayout 
@@ -65,7 +74,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-
+	    <Button 
+	        android:id="@+id/btn_crime_time"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Set Time"
+	        />
+        
         <CheckBox
             android:id="@+id/chk_crime_solved"
             android:layout_width="match_parent"

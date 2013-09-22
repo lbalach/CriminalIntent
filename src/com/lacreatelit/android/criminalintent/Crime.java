@@ -8,15 +8,20 @@ import org.json.JSONObject;
 
 public class Crime {
 	
+	// JSON keys used by the model class
 	private static final String JSON_ID = "id";
 	private static final String JSON_TITLE = "title";
 	private static final String JSON_SOLVED = "solved";
 	private static final String JSON_DATE = "date";
+	private static final String JSON_PHOTO = "photo";
 	
+	// Data used in the model class
 	private UUID mId;
 	private String mTitle;
 	private Date mDate = new Date();
 	private boolean mSolved;
+	private Photo mPhoto;
+	
 	
 	public Crime() {
 		
@@ -30,6 +35,10 @@ public class Crime {
 		mTitle = jsonObject.getString(JSON_TITLE);
 		mSolved = jsonObject.getBoolean(JSON_SOLVED);
 		mDate = new Date(jsonObject.getLong(JSON_DATE));
+		
+		if(jsonObject.has(JSON_PHOTO)) {
+			mPhoto = new Photo(jsonObject.getJSONObject(JSON_PHOTO));
+		}
 		
 	}
 
@@ -71,14 +80,28 @@ public class Crime {
 	
 	public JSONObject toJSON() throws JSONException {
 		
-		JSONObject json = new JSONObject();
-		json.put(JSON_ID, mId.toString());
-		json.put(JSON_TITLE, mTitle);
-		json.put(JSON_SOLVED, mSolved);
-		json.put(JSON_DATE, mDate.getTime());
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put(JSON_ID, mId.toString());
+		jsonObject.put(JSON_TITLE, mTitle);
+		jsonObject.put(JSON_SOLVED, mSolved);
+		jsonObject.put(JSON_DATE, mDate.getTime());
 		
-		return json;
+		if(mPhoto != null) {
+			jsonObject.put(JSON_PHOTO, mPhoto.toJSON());
+		}
+		
+		return jsonObject;
 		
 	}
+
+	public Photo getPhoto() {
+		return mPhoto;
+	}
+
+	public void setPhoto(Photo photo) {
+		mPhoto = photo;
+	}
+	
+	
 	
 }

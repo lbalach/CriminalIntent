@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.hardware.Camera.Size;
 import android.os.Build;
@@ -23,6 +25,9 @@ import android.widget.Button;
 public class CrimeCameraFragment extends Fragment {
 	
 	private static final String TAG = "CrimeCameraFragment";
+	
+	public static final String EXTRA_PHOTO_FILENAME = 
+			"com.lacreatelit.android.criminalintent.photo_filename";
 	
 	private Camera mCamera;
 	private SurfaceView mSurfaceView;
@@ -50,9 +55,19 @@ public class CrimeCameraFragment extends Fragment {
 			// Create a filename
 			String fileName = UUID.randomUUID().toString() + ".jpg";
 			
+			boolean success = writeToFile(fileName, data);
 			// Save the jpeg data to disk
-			if(writeToFile(fileName, data)) {
+			if(success) {
+				
 				Log.i(TAG, "JPEG saved at " + fileName);
+				Intent intent = new Intent();
+				intent.putExtra(EXTRA_PHOTO_FILENAME, fileName);
+				getActivity().setResult(Activity.RESULT_OK, intent);
+				
+			} else {
+				
+				getActivity().setResult(Activity.RESULT_CANCELED);
+				
 			}
 			
 			// Destroy the activity - So no need to set the visibility of the 

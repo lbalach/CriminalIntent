@@ -8,6 +8,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class CrimeFragment extends Fragment {
@@ -42,10 +44,12 @@ public class CrimeFragment extends Fragment {
 	static final String DIALOG_DATE = "date";
 	static final String FRAG_MGR_DIALOG_TIME = "time";
 	private static final String FRAG_MGR_DIALOG_CHOICE = "choice";
-	
+
+	// Request codes of CrimeFragment
 	static final int REQUEST_DATE = 0;
 	private static final int TARGET_REQUEST_TIME = 1;
 	private static final int TARGET_REQUEST_CHOICE = 2;
+	private static final int REQUEST_PHOTO = 3;
 	
 	
 	private Crime mCrime;
@@ -56,6 +60,7 @@ public class CrimeFragment extends Fragment {
 	private ChangeChoiceFragment mChangeChoiceFragment;
 	
 	private ImageButton mPhotoButton;
+	private ImageView mPhotoView;
 	
 	// Variables to handle the Contextual Action Bar 
 	private Object mActionMode = null;
@@ -278,9 +283,10 @@ public class CrimeFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				
+				Log.i(TAG, "Starting the camera activity...");
 				Intent intent = new Intent(getActivity(), 
 						CrimeCameraActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, REQUEST_PHOTO);
 				
 			}
 		});
@@ -291,6 +297,9 @@ public class CrimeFragment extends Fragment {
 			hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)) {
 			mPhotoButton.setEnabled(false);
 		}
+		
+		//==========Set the Image View========================================
+		mPhotoView = (ImageView)view.findViewById(R.id.imageView_crime);
 		
 		
 		//==========All work done, return the fully constructed view============
@@ -306,6 +315,7 @@ public class CrimeFragment extends Fragment {
 		
 		if(requestCode == REQUEST_DATE) {
 			
+			Log.i(TAG, "Processing date request...");
 			processDateResult(dataIntent,
 					DatePickerFragment.EXTRA_DATE, true);
 			getActivity().getSupportFragmentManager()
@@ -316,6 +326,7 @@ public class CrimeFragment extends Fragment {
 			
 		} else if (requestCode == TARGET_REQUEST_TIME) {
 
+			Log.i(TAG, "Processing time request...");
 			processDateResult(dataIntent, 
 					TimePickerFragment.BUNDLE_EXTRA_TIME, false);
 			getActivity().getSupportFragmentManager()
@@ -326,8 +337,13 @@ public class CrimeFragment extends Fragment {
 			
 		} else if (requestCode == TARGET_REQUEST_CHOICE) {
 			
+			Log.i(TAG, "Processing target choice...");
 			processChoiceRequest(dataIntent);			
 			
+		} else if (requestCode == REQUEST_PHOTO) {
+			
+			Log.i(TAG, "Porcessing photo request...");
+			processPhotoRequest(dataIntent);
 		}
 		
 	} // End - onActivityResult()
@@ -391,6 +407,20 @@ public class CrimeFragment extends Fragment {
 			
 		}
 		
+	}
+	
+	private void processPhotoRequest(Intent dataIntent) {
+		
+		String filename = dataIntent
+				.getStringExtra(CrimeCameraFragment.EXTRA_PHOTO_FILENAME);
+		
+		if(filename != null) {
+			
+			Photo photo = new Photo(filename);
+			mCrime.setPhoto(photo);
+			showPhoto();
+			Log.i(TAG, "Crime: " + mCrime.getTitle() + " has a photo");
+		}
 	}
 
 	@Override
@@ -461,6 +491,36 @@ public class CrimeFragment extends Fragment {
 		returnToParentActivity();
 		
 	}
+	
+	private void showPhoto() {
+		
+		// Set the image button's image based on the photo
+		Photo photo = mCrime.getPhoto();
+		BitmapDrawable bitmapDrawable = null;
+		
+		if(photo != null) {
+			String path = getActivity().getFileStreamPath(photo.getFilename())
+					.getAbsolutePath();
+			bitmapDrawable = PictureUtils.getScaledDrawable(getActivity(),
+					path);
+		}
+		mPhotoView.setImageDrawable(bitmapDrawable);
+	}
+
+	@Override
+	public void onStart() {
+		
+		super.onStart();
+		showPhoto();
+	}
+
+	@Override
+	public void onStop() {
+		
+		super.onStop();
+		PictureUtils.cleanImageView(mPhotoView);
+	}
+	
 	
 
 }
